@@ -12,6 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    background-color: black;
+    overflow: hidden;
 }
 
 .windows {
@@ -30,27 +32,49 @@ body {
     height: 500px;
     position: absolute;
     z-index: 9;
+    border: 1px green solid;
 }
+
+/* .windows {
+    background-color: rgba(0, 0, 0, 0) !important;
+} */
+
+/* .cmd, 
+.cmd div, 
+.cmd span[data-text]:not(.cmd-inverted):not(.token):not(.emoji), 
+.terminal, 
+.terminal-output>:not(.raw) a,
+.terminal-output>:not(.raw) div, 
+.terminal-output>:not(.raw) span[data-text]:not(.token):not(.inverted):not(.terminal-inverted):not(.cmd-inverted):not(.terminal-error):not(.emoji), 
+.terminal.external [data-text] {
+    background-color: rgba(0, 0, 0, 0) !important;
+} */
+
 #dragheader {
     padding: 10px;
     cursor: move;
     z-index: 10;
-    background-color: #2196F3;
     color: #fff;
+    background-color: black;
     width: 100%;
     align-items: center;
     justify-content: center;
     display: flex;
 }
-
+#dragheader > * {
+    min-width: 700px !important;
+}
 .terminal,
 span,
 .cmd,
 div {
-    --color: rgba(255, 255, 255, 0.99);
+    --color: #fff
 }
 
 .terminal,
 span {
-    --size: 1.4;
+    --size: 1.5;
 }
+
+
+canvas {display: block;}
