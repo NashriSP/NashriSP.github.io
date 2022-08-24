@@ -26,40 +26,55 @@ $(windows).terminal({
 
 
 // dragable windows start
-var isMouseDown, initX, initY, height = draggable.offsetHeight, width = draggable.offsetWidth;
+dragElement(document.getElementById("drag"));
 
-draggable.addEventListener('mousedown', function (e) {
-  isMouseDown = true;
-  document.body.classList.add('no-select');
-  initX = e.offsetX;
-  initY = e.offsetY;
-})
-
-document.addEventListener('mousemove', function (e) {
-  if (isMouseDown) {
-    var cx = e.clientX - initX,
-      cy = e.clientY - initY;
-    if (cx < 0) {
-      cx = 0;
-    }
-    if (cy < 0) {
-      cy = 0;
-    }
-    if (window.innerWidth - e.clientX + initX < width) {
-      cx = window.innerWidth - width;
-    }
-    if (e.clientY > window.innerHeight - height + initY) {
-      cy = window.innerHeight - height;
-    }
-    draggable.style.left = cx + 'px';
-    draggable.style.top = cy + 'px';
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
   }
-})
 
-draggable.addEventListener('mouseup', function () {
-  isMouseDown = false;
-  document.body.classList.remove('no-select');
-})
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    if (elmnt.offsetTop - pos2 < 0) {
+      elmnt.style.top = 0 + "px";
+    } if (e.clientY > window.innerHeight - elmnt.offsetHeight+ e.offsetY) {
+      elmnt.style.top = window.innerHeight - elmnt.offsetHeight + "px";
+    } else {
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    };
+    // elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    if (elmnt.offsetLeft - pos1 < 0) {
+      elmnt.style.left = 0 + "px";
+    } if (window.innerWidth - e.clientX + e.offsetX < elmnt.offsetWidth) {
+      elmnt.style.left = window.innerWidth - elmnt.offsetWidth + "px";
+    } else {
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    };
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 
 // dragable windows end
 
