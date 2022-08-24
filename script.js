@@ -1,58 +1,65 @@
 // Terminal js start
 const windows = document.getElementsByClassName("windows")
 
-$(windows).terminal( {
-    iam: function (name) {
-        this.echo('Hello, ' + name +
-            '. My Name is Nashri Aziz Alhazmy');
-    },
-    
+$(windows).terminal({
+  iam: function (name) {
+    this.echo('Hello, ' + name +
+      '. My Name is Nashri Aziz Alhazmy');
+  },
+
 }, {
-  greetings: '____',
-    prompt: "NashriSP@nashrigitio:~$",
-    name: 'test',
-    height: 500
+  greetings:
+    '╔═╗─╔╗─────╔╗─────╔═══╗─────────╔═══╦╗╔╗' +
+    '\n║║╚╗║║─────║║─────║╔═╗║─────────║╔═╗║║║║' +
+    '\n║╔╗╚╝╠══╦══╣╚═╦═╦╗║║─║╠═══╦╦═══╗║║─║║║║╚═╦══╦═══╦╗╔╦╗─╔╗' +
+    '\n║║╚╗║║╔╗║══╣╔╗║╔╬╣║╚═╝╠══║╠╬══║║║╚═╝║║║╔╗║╔╗╠══║║╚╝║║─║║' +
+    '\n║║─║║║╔╗╠══║║║║║║║║╔═╗║║══╣║║══╣║╔═╗║╚╣║║║╔╗║║══╣║║║╚═╝║' +
+    '\n╚╝─╚═╩╝╚╩══╩╝╚╩╝╚╝╚╝─╚╩═══╩╩═══╝╚╝─╚╩═╩╝╚╩╝╚╩═══╩╩╩╩═╗╔╝' +
+    '\n───────────────────────────────────────────────────╔═╝║' +
+    '\n───────────────────────────────────────────────────╚══╝',
+  prompt: "NashriSP@nashrigitio:~$",
+  name: 'test',
+  height: 500
 });
 
 // Termina js end
 
 
 // dragable windows start
-dragElement(document.getElementById("drag"));
+var isMouseDown, initX, initY, height = draggable.offsetHeight, width = draggable.offsetWidth;
 
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    elmnt.onmousedown = dragMouseDown;
-  }
+draggable.addEventListener('mousedown', function (e) {
+  isMouseDown = true;
+  document.body.classList.add('no-select');
+  initX = e.offsetX;
+  initY = e.offsetY;
+})
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
+document.addEventListener('mousemove', function (e) {
+  if (isMouseDown) {
+    var cx = e.clientX - initX,
+      cy = e.clientY - initY;
+    if (cx < 0) {
+      cx = 0;
+    }
+    if (cy < 0) {
+      cy = 0;
+    }
+    if (window.innerWidth - e.clientX + initX < width) {
+      cx = window.innerWidth - width;
+    }
+    if (e.clientY > window.innerHeight - height + initY) {
+      cy = window.innerHeight - height;
+    }
+    draggable.style.left = cx + 'px';
+    draggable.style.top = cy + 'px';
   }
+})
 
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
+draggable.addEventListener('mouseup', function () {
+  isMouseDown = false;
+  document.body.classList.remove('no-select');
+})
 
 // dragable windows end
 
