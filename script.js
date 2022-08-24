@@ -1,4 +1,20 @@
+// Terminal js start
+const windows = document.getElementsByClassName("windows")
 
+$(windows).terminal( {
+    iam: function (name) {
+        this.echo('Hello, ' + name +
+            '. My Name is Nashri Aziz Alhazmy');
+    },
+    
+}, {
+  greetings: '____',
+    prompt: "NashriSP@nashrigitio:~$",
+    name: 'test',
+    height: 500
+});
+
+// Termina js end
 
 
 // dragable windows start
