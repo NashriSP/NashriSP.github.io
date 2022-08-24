@@ -8,7 +8,7 @@ $(windows).terminal( {
     },
     
 }, {
-    greeting: "",
+    greeting: " ",
     prompt: "NashriSP@nashrigitio:~$",
     name: 'test',
     height: 500
