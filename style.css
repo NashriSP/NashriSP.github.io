@@ -19,11 +19,10 @@ body {
 .windows {
     width: 100%;
     height: 50%;
-    
+
 }
 
-.drag
- {
+.drag {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,7 +80,12 @@ canvas {
 
 @media only screen and (max-width: 960px) {
     .drag {
-      height: 150px;
-      width: 85%;
+        height: 150px;
+        width: 85%;
     }
-  }
+
+    .terminal,
+    span {
+        --size: 1;
+    }
+}
