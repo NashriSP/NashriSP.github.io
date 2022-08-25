@@ -17,11 +17,15 @@ else {
     '\n───────────────────────────────────────────────────╔═╝║' +
     '\n───────────────────────────────────────────────────╚══╝'
 }
+
 $(windows).terminal({
   iam: function (name) {
     this.echo('Hello, ' + name +
       '. My Name is Nashri Aziz Alhazmy');
   },
+  email: function() {
+    this.echo('nashriaziz65@gmail.com')
+  }
 
 
 }, {
