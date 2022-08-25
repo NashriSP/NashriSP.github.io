@@ -1,25 +1,34 @@
 // Terminal js start
 const windows = document.getElementsByClassName("windows")
-
+if ($(window).width() < 960) {
+  mh = 105;
+  pr = "Nashri@githubIo:~$";
+  gr = null
+}
+else {
+  mh = 455;
+  pr = "NashriSP@github-io:~$";
+  gr = '╔═╗─╔╗─────╔╗─────╔═══╗─────────╔═══╦╗╔╗' +
+    '\n║║╚╗║║─────║║─────║╔═╗║─────────║╔═╗║║║║' +
+    '\n║╔╗╚╝╠══╦══╣╚═╦═╦╗║║─║╠═══╦╦═══╗║║─║║║║╚═╦══╦═══╦╗╔╦╗─╔╗' +
+    '\n║║╚╗║║╔╗║══╣╔╗║╔╬╣║╚═╝╠══║╠╬══║║║╚═╝║║║╔╗║╔╗╠══║║╚╝║║─║║' +
+    '\n║║─║║║╔╗╠══║║║║║║║║╔═╗║║══╣║║══╣║╔═╗║╚╣║║║╔╗║║══╣║║║╚═╝║' +
+    '\n╚╝─╚═╩╝╚╩══╩╝╚╩╝╚╝╚╝─╚╩═══╩╩═══╝╚╝─╚╩═╩╝╚╩╝╚╩═══╩╩╩╩═╗╔╝' +
+    '\n───────────────────────────────────────────────────╔═╝║' +
+    '\n───────────────────────────────────────────────────╚══╝'
+}
 $(windows).terminal({
   iam: function (name) {
     this.echo('Hello, ' + name +
       '. My Name is Nashri Aziz Alhazmy');
   },
 
+
 }, {
-  greetings: null,
-    // '╔═╗─╔╗─────╔╗─────╔═══╗─────────╔═══╦╗╔╗' +
-    // '\n║║╚╗║║─────║║─────║╔═╗║─────────║╔═╗║║║║' +
-    // '\n║╔╗╚╝╠══╦══╣╚═╦═╦╗║║─║╠═══╦╦═══╗║║─║║║║╚═╦══╦═══╦╗╔╦╗─╔╗' +
-    // '\n║║╚╗║║╔╗║══╣╔╗║╔╬╣║╚═╝╠══║╠╬══║║║╚═╝║║║╔╗║╔╗╠══║║╚╝║║─║║' +
-    // '\n║║─║║║╔╗╠══║║║║║║║║╔═╗║║══╣║║══╣║╔═╗║╚╣║║║╔╗║║══╣║║║╚═╝║' +
-    // '\n╚╝─╚═╩╝╚╩══╩╝╚╩╝╚╝╚╝─╚╩═══╩╩═══╝╚╝─╚╩═╩╝╚╩╝╚╩═══╩╩╩╩═╗╔╝' +
-    // '\n───────────────────────────────────────────────────╔═╝║' +
-    // '\n───────────────────────────────────────────────────╚══╝',
-  prompt: "NashriSP@github-io:~$",
+  greetings: gr,
+  prompt: pr,
   name: 'test',
-  height: 500
+  height: mh
 });
 
 // Termina js end
@@ -129,11 +138,12 @@ function draw() {
 setInterval(draw, 77.7);
 // canva rain from Ebram Marzouk's codepen https://codepen.io/P3R0/pen/MwgoKv end 
 
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
   c.width = window.innerWidth;
   c.height = window.innerHeight;
-  new_size = c.width/font_size;
+  new_size = c.width / font_size;
   drops = [];
-  for(var i = 0; i < new_size; i++)
-      drops[i] = 1;
+  for (var i = 0; i < new_size; i++)
+    drops[i] = 1;
+
 });
